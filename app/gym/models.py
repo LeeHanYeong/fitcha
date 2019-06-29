@@ -51,7 +51,7 @@ class Service(models.Model):
     )
     gym = models.ForeignKey(
         Gym, verbose_name='체육관', on_delete=models.CASCADE,
-        related_name='gym_service_set',
+        related_name='service_set',
     )
     type = models.CharField('유형', choices=CHOICES_SERVICE, max_length=20)
     cost = models.IntegerField('가격')
