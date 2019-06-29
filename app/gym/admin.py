@@ -40,6 +40,7 @@ class GymAdmin(admin.ModelAdmin):
                 f'border-radius: 5px;">'
                 for image in obj.image_set.all()
             ]))
+
     images.short_description = '이미지 목록'
 
     def facilities(self, obj):
@@ -57,7 +58,9 @@ class GymAdmin(admin.ModelAdmin):
                 ) for service in obj.service_set.all()
             ])
         )
+
     services.short_description = '서비스 목록'
+
 
 @admin.register(GymImage)
 class GymImageAdmin(admin.ModelAdmin):
