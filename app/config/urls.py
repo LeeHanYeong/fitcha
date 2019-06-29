@@ -64,6 +64,7 @@ class RedocSchemaView(BaseSchemaView):
 
 urlpatterns_apis_v1 = [
     path('auth/', include(auth_patterns)),
+    path('gym/', include('gym.urls')),
     path('members/', include(members_patterns)),
 ]
 urlpatterns_apis = [

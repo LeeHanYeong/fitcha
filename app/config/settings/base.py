@@ -36,6 +36,9 @@ STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 STATICFILES_DIRS = [STATIC_DIR]
 
+MEDIA_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
+
 # Auth
 AUTH_USER_MODEL = 'members.User'
 AUTHENTICATION_BACKENDS = [
@@ -127,6 +130,7 @@ CKEDITOR_CONFIGS = {
 
 # Application definition
 INSTALLED_APPS = [
+    'gym.apps.GymConfig',
     'members.apps.MembersConfig',
     'utils',
 

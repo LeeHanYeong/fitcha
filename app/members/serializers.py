@@ -11,8 +11,10 @@ class UserSerializer(serializers.ModelSerializer):
             'pk',
             'username',
             'type',
+            'sex',
             'email',
             'phone_number',
+            'is_trainer',
         )
 
     def to_representation(self, instance):
@@ -32,8 +34,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'password1',
             'password2',
             'type',
+            'sex',
             'email',
             'phone_number',
+            'is_trainer',
         )
 
     def __init__(self, *args, **kwargs):
@@ -41,6 +45,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
         self.fields['username'].required = False
 
     def validate(self, data):
+        if not data.get('nickname'):
+            raise serializers.ValidationError({'nickname': '닉네임은 필수항목입니다'})
         if data['password1'] != data['password2']:
             raise serializers.ValidationError('비밀번호와 비밀번호확인란의 값이 다릅니다')
         data['password'] = data['password2']
@@ -60,7 +66,9 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'email',
+            'sex',
             'phone_number',
+            'is_trainer',
         )
 
     def to_representation(self, instance):

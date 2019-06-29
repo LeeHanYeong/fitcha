@@ -27,12 +27,26 @@ class User(AbstractUser, TimeStampedModel, DeleteModel):
         (TYPE_GOOGLE, '구글'),
         (TYPE_EMAIL, '이메일'),
     )
+    SEX_CHOICES = (
+        ('m', '남성'),
+        ('f', '여성'),
+        ('o', '기타'),
+        ('n', '알리지 않음'),
+    )
     first_name = None
     last_name = None
+    gym = models.ForeignKey(
+        'gym.Gym', verbose_name='헬스장', on_delete=models.SET_NULL,
+        related_name='trainer_set', blank=True, null=True,
+    )
     name = models.CharField('이름', max_length=20, blank=True)
     type = models.CharField('유형', max_length=10, choices=TYPE_CHOICES, default=TYPE_EMAIL)
+    sex = models.CharField('성별', max_length=1, choices=SEX_CHOICES)
+    nickname = models.CharField('닉네임', max_length=20, unique=True, blank=True, null=True)
     email = models.EmailField('이메일', unique=True)
     phone_number = PhoneNumberField('전화번호', blank=True)
+
+    is_trainer = models.BooleanField('트레이너 여부', default=False)
 
     REQUIRED_FIELDS = ('email',)
 
