@@ -2,3 +2,5 @@
 
 # Log
 sentry-sdk
+
+gunicorn
